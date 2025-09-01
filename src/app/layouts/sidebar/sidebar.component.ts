@@ -25,6 +25,12 @@ export class SidebarComponent implements OnInit {
 
   public sidebarMenu: any[] = [
     {
+      nombre: 'Inicio',
+      link: '/dashboard',
+      iconoClase: 'ki-filled ki-home',
+      activo: false,
+    },
+    {
       nombre: 'Transporte',
       link: '',
       iconoClase: 'ki-filled ki-delivery',
@@ -33,7 +39,7 @@ export class SidebarComponent implements OnInit {
       children: [
         {
           nombre: 'Viaje',
-          link: '/transporte/viaje/lista',
+          link: '/transporte/viaje',
         },
       ],
     },

@@ -10,13 +10,13 @@ const routes: Route[] = [
     path: '',
     children: [
       {
-        path: 'lista',
+        path: '',
         loadComponent: () => import('./pages/viaje-lista/viaje-lista.component'),
       },
     ],
   },
-  { path: '', redirectTo: 'lista', pathMatch: 'full' },
-  { path: '**', redirectTo: 'lista', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 export default routes;
