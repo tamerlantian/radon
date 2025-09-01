@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '@environments/environment';
@@ -57,7 +57,7 @@ export class HttpBaseRepository {
   }
 
   // Método DELETE
-  public delete(endpoint: string, data: any): Observable<any> {
+  public delete(endpoint: string, data?: any): Observable<any> {
     const url = this.buildUrl(endpoint);
     return this.httpClient.delete(url, data);
   }
@@ -65,5 +65,14 @@ export class HttpBaseRepository {
   public patch<T>(endpoint: string, data: any): Observable<T> {
     const url = this.buildUrl(endpoint);
     return this.httpClient.patch<T>(url, data);
+  }
+
+  public getArchivo(endpoint: string, params?: HttpParams): Observable<HttpResponse<Blob>> {
+    const url = this.buildUrl(endpoint);
+    return this.httpClient.get(url, {
+      params,
+      observe: 'response',
+      responseType: 'blob',
+    });
   }
 }
