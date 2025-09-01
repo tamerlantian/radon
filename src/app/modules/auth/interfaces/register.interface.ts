@@ -5,6 +5,7 @@ export interface Register {
   password: string;
   confirmarContrasena: string;
   terminoCondicion: boolean;
+  proyecto: string;
 }
 
 export interface RegisterResponse {

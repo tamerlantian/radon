@@ -39,6 +39,7 @@ export default class RegisterComponent {
         password: this.formularioRegister.get('password')?.value,
         confirmarContrasena: this.formularioRegister.get('confirmarContrasena')?.value,
         terminoCondicion: this.formularioRegister.get('terminoCondicion')?.value,
+        proyecto: 'REDDOC',
       })
       .pipe(finalize(() => this.registrando.set(false)))
       .subscribe(res => {
