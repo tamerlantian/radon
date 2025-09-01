@@ -2,16 +2,15 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthRepository } from '../../repositories/auth.repository';
-import { AdvancedButtonComponent } from '@app/common/components/ui/advanced-button/advanced-button.component';
-import { InputComponent } from '@app/common/components/ui/form/input/input.component';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlertaService } from '@app/common/services/alerta.service';
+import { InputComponent, ButtonComponent } from '@tamerlantian/ui-components';
 
 @Component({
   selector: 'app-recover-password',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, AdvancedButtonComponent, InputComponent],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, InputComponent],
   templateUrl: './recover-password.component.html',
   styleUrl: './recover-password.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

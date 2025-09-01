@@ -15,7 +15,7 @@
       </div>
       <div class="flex flex-col gap-1">
         <label class="form-label text-gray-900"> Email </label>
-        <app-input
+        <ui-input
           placeholder="Ingresa tu correo"
           formControlName="username"
           [control]="formularioRegister.get('username')"
@@ -23,11 +23,11 @@
             required: 'El correo es requerido.',
             email: 'Ingresa un correo válido.',
           }"
-        ></app-input>
+        ></ui-input>
       </div>
       <div class="flex flex-col gap-1">
         <label class="form-label font-normal text-gray-900"> Contraseña </label>
-        <app-input
+        <ui-input
           placeholder="**********"
           type="password"
           formControlName="password"
@@ -36,11 +36,11 @@
             required: 'La contraseña es requerida.',
             minlength: 'La contraseña debe tener al menos 3 caracteres.',
           }"
-        ></app-input>
+        ></ui-input>
       </div>
       <div class="flex flex-col gap-1">
         <label class="form-label font-normal text-gray-900"> Confirmar contraseña </label>
-        <app-input
+        <ui-input
           placeholder="**********"
           type="password"
           formControlName="confirmarContrasena"
@@ -49,7 +49,7 @@
             required: 'La contraseña es requerida.',
             notMatching: 'Las contraseñas no coinciden.',
           }"
-        ></app-input>
+        ></ui-input>
       </div>
       <label class="checkbox-group">
         <input
@@ -69,7 +69,7 @@
         </span>
       </label>
 
-      <app-advanced-button
+      <ui-button
         [text]="'Crear cuenta'"
         [loadingText]="'Creando...'"
         [type]="'button'"
@@ -79,7 +79,7 @@
         [isLoading]="registrando()"
         [isDisabled]="!this.formularioRegister.valid"
         (buttonClick)="register()"
-      ></app-advanced-button>
+      ></ui-button>
     </form>
   </div>
 </div>

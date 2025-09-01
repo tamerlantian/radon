@@ -1,15 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InputComponent } from '@app/common/components/ui/form/input/input.component';
-import { LabelComponent } from '@app/common/components/ui/form/label/label.component';
 import { Store } from '@ngrx/store';
 import { loginRequest } from '../../store/actions/login.action';
 import { RouterLink } from '@angular/router';
-import { AdvancedButtonComponent } from '@app/common/components/ui/advanced-button/advanced-button.component';
 import { selectIsLoading } from '../../store/selectors/auth.selector';
 import { AsyncPipe } from '@angular/common';
 import { NgxTurnstileModule } from 'ngx-turnstile';
 import { environment } from '@environments/environment';
+import { InputComponent, ButtonComponent, LabelComponent } from '@tamerlantian/ui-components';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +17,7 @@ import { environment } from '@environments/environment';
     ReactiveFormsModule,
     InputComponent,
     LabelComponent,
-    AdvancedButtonComponent,
+    ButtonComponent,
     NgxTurnstileModule,
     AsyncPipe,
   ],
