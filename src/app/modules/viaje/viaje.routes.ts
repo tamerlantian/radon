@@ -11,7 +11,16 @@ const routes: Route[] = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./pages/viaje-lista/viaje-lista.component'),
+        loadComponent: () => import('./pages/viaje/viaje.component'),
+      },
+    ],
+  },
+  {
+    path: 'nuevo',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/viaje-nuevo/viaje-nuevo.component'),
       },
     ],
   },
