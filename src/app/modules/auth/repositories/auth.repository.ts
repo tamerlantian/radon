@@ -18,7 +18,7 @@ export class AuthRepository {
   register(usuario: Register) {
     return this.httpBase.post<RegisterResponse>('seguridad/usuario/nuevo/', {
       ...usuario,
-      proyecto: 'reddoc',
+      aplicacion: 'reddoc',
     });
   }
 
