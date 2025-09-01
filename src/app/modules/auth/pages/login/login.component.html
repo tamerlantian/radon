@@ -54,7 +54,7 @@
       @if (isProduction) {
         <div class="flex justify-center">
           <ngx-turnstile
-            [siteKey]="turnstileToken"
+            [siteKey]="turnstileSiteKey"
             (resolved)="onTurnstileSuccess($event)"
           ></ngx-turnstile>
         </div>
