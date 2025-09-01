@@ -40,7 +40,7 @@ export class HttpBaseRepository {
   }
 
   // Método GET para listas
-  public get<T>(endpoint: string, params?: QueryParams): Observable<T> {
+  public get<T>(endpoint: string, params: QueryParams = {}): Observable<T> {
     const httpParams = this.buildHttpParams(params);
     const url = this.buildUrl(endpoint);
     return this.httpClient.get<T>(url, { params: httpParams });
@@ -86,7 +86,7 @@ export class HttpBaseRepository {
     return params;
   }
 
-  public getArchivo(endpoint: string, params?: QueryParams): Observable<HttpResponse<Blob>> {
+  public getArchivo(endpoint: string, params: QueryParams = {}): Observable<HttpResponse<Blob>> {
     const httpParams = this.buildHttpParams(params);
     const url = this.buildUrl(endpoint);
     return this.httpClient.get(url, {
