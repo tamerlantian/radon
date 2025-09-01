@@ -18,4 +18,15 @@ export default [
       },
     ],
   },
+  {
+    path: 'transporte',
+    canActivate: [authGuard],
+    loadComponent: () => import('./admin-layout/admin-layout.component'),
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../modules/viaje/viaje.routes'),
+      },
+    ],
+  },
 ] as Routes;
