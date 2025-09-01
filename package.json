@@ -1,6 +1,6 @@
 {
-  "name": "metronic-tailwind-angular",
-  "version": "0.0.0",
+  "name": "radon",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
