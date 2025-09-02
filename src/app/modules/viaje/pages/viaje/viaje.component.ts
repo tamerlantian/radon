@@ -25,9 +25,11 @@ export default class ViajeComponent implements OnInit {
   }
 
   getVisitas() {
-    this._viajeRepository.getViajes().subscribe(response => {
-      this.viajes.set(response.viajes);
-    });
+    this._viajeRepository
+      .getViajes({ estado_cancelado: 'False', estado_aceptado: 'False' })
+      .subscribe(response => {
+        this.viajes.set(response.viajes);
+      });
   }
 
   aceptarPropuesta(propuestaId: number): void {
