@@ -34,16 +34,14 @@ export interface Datos {
 
 export interface Propuesta {
   id: number;
-  fecha: string;
   precio: number;
   contenedor_id: number;
-  estado_aceptado: boolean;
-  usuario_id: number;
-  viaje_id: number;
-  empresa: number;
+  empresa: string;
+  usuario: number;
+  viaje: number;
 }
 
-export interface VisitaDetalle {
+export interface ViajeDetalle {
   id: number;
   fecha: string;
   cliente: string;

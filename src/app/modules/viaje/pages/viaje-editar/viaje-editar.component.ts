@@ -11,7 +11,7 @@ import { ViajeRepository } from '../../repositories/viaje.repository';
 import { AlertaService } from '@app/common/services/alerta.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { VisitaDetalle } from '../../interfaces/viaje.interface';
+import { ViajeDetalle } from '../../interfaces/viaje.interface';
 
 @Component({
   selector: 'app-viaje-editar',
@@ -30,7 +30,7 @@ export default class ViajeEditarComponent implements OnInit {
   private _route = inject(ActivatedRoute);
 
   viajeId: number | null = null;
-  viajeDatos = signal<VisitaDetalle | null>(null);
+  viajeDatos = signal<ViajeDetalle | null>(null);
   cargando = signal(true);
 
   ngOnInit(): void {

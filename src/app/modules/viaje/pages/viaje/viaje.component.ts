@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { Viaje } from '../../interfaces/viaje.interface';
 import { CommonModule } from '@angular/common';
 import { AlertaService } from '@app/common/services/alerta.service';
+import { ViajeCardComponent } from '../../components/viaje-card/viaje-card.component';
 
 @Component({
   selector: 'app-viaje-lista',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, ViajeCardComponent],
   templateUrl: './viaje.component.html',
   styleUrl: './viaje.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +34,13 @@ export default class ViajeComponent implements OnInit {
     this._viajeRepository.aceptarPropuesta(propuestaId).subscribe(() => {
       this.getVisitas();
       this._alertaService.mostrarExito('Propuesta aceptada');
+    });
+  }
+
+  eliminarViaje(viajeId: number): void {
+    this._viajeRepository.eliminarViaje(viajeId).subscribe(() => {
+      this.getVisitas();
+      this._alertaService.mostrarExito('Viaje eliminado');
     });
   }
 }
