@@ -27,6 +27,7 @@ export class ViajeFormularioComponent implements OnInit {
   @Output() viajeGuardado: EventEmitter<any> = new EventEmitter();
 
   @Input() estaEditando = false;
+  @Input() viajeData: any = null;
 
   private _store = inject(Store);
   private _usuario: Usuario | null = null;
@@ -55,7 +56,9 @@ export class ViajeFormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this._initStoreDatos();
-    if (!this.estaEditando) {
+    if (this.estaEditando && this.viajeData) {
+      this._loadViajeData();
+    } else {
       this._initForm();
     }
   }
@@ -71,6 +74,13 @@ export class ViajeFormularioComponent implements OnInit {
       usuario: this._usuario?.id,
       cliente: this._usuario?.nombre_corto,
     });
+  }
+
+  private _loadViajeData() {
+    if (this.viajeData) {
+      this.viajeForm.patchValue(this.viajeData);
+      this._cdr.detectChanges();
+    }
   }
 
   enviarFormulario(): void {

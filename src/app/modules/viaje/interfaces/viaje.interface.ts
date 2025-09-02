@@ -40,6 +40,32 @@ export interface Propuesta {
   estado_aceptado: boolean;
   usuario_id: number;
   viaje_id: number;
-  empresa_id: number;
-  empresa__nombre: string;
+  empresa: number;
+}
+
+export interface VisitaDetalle {
+  id: number;
+  fecha: string;
+  cliente: string;
+  unidades: number;
+  peso: number;
+  volumen: number;
+  negocio_id: number;
+  contenedor_id: number;
+  schema_name: string;
+  solicitud_cliente: boolean;
+  estado_aceptado: boolean;
+  estado_aceptado_transporte: boolean;
+  flete: number;
+  puntos_entrega: number;
+  comentario: string;
+  propuestas: number;
+  servicio: number;
+  producto: number;
+  empaque: number;
+  vehiculo: number;
+  conductor: number;
+  usuario: number;
+  ciudad_origen: number;
+  ciudad_destino: number;
 }

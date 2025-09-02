@@ -24,6 +24,15 @@ const routes: Route[] = [
       },
     ],
   },
+  {
+    path: 'editar/:id',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/viaje-editar/viaje-editar.component'),
+      },
+    ],
+  },
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

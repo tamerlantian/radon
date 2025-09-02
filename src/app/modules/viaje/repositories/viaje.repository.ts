@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { QueryParams } from '@app/core/interfaces/api.interface';
 import { HttpBaseRepository } from '@app/core/repository/http-base.repository';
-import { ViajeLista } from '../interfaces/viaje.interface';
+import { ViajeLista, VisitaDetalle } from '../interfaces/viaje.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,5 +15,17 @@ export class ViajeRepository {
 
   guardarViaje(viaje: any) {
     return this._httpBase.post<any>('vertical/viaje/', viaje);
+  }
+
+  getViajeById(id: number) {
+    return this._httpBase.get<VisitaDetalle>(`vertical/viaje/${id}/`);
+  }
+
+  actualizarViaje(id: number, viaje: any) {
+    return this._httpBase.put<any>(`vertical/viaje/${id}/`, viaje);
+  }
+
+  aceptarPropuesta(id: number) {
+    return this._httpBase.post<any>(`vertical/propuesta/aceptar/`, { id });
   }
 }
