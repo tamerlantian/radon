@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '@environments/environment';
+import { QueryParams } from '../interfaces/api.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -39,9 +40,10 @@ export class HttpBaseRepository {
   }
 
   // Método GET para listas
-  public get<T>(endpoint: string, params?: HttpParams): Observable<T> {
+  public get<T>(endpoint: string, params: QueryParams = {}): Observable<T> {
+    const httpParams = this.buildHttpParams(params);
     const url = this.buildUrl(endpoint);
-    return this.httpClient.get<T>(url, { params });
+    return this.httpClient.get<T>(url, { params: httpParams });
   }
 
   // Método POST
@@ -67,10 +69,28 @@ export class HttpBaseRepository {
     return this.httpClient.patch<T>(url, data);
   }
 
-  public getArchivo(endpoint: string, params?: HttpParams): Observable<HttpResponse<Blob>> {
+  /**
+   * Construye los parámetros HTTP a partir de los parámetros de consulta
+   * @param queryParams Parámetros de consulta
+   * @returns HttpParams
+   */
+  private buildHttpParams(queryParams: QueryParams): HttpParams {
+    let params = new HttpParams();
+
+    Object.keys(queryParams).forEach(key => {
+      if (queryParams[key] !== null && queryParams[key] !== undefined) {
+        params = params.append(key, queryParams[key].toString());
+      }
+    });
+
+    return params;
+  }
+
+  public getArchivo(endpoint: string, params: QueryParams = {}): Observable<HttpResponse<Blob>> {
+    const httpParams = this.buildHttpParams(params);
     const url = this.buildUrl(endpoint);
     return this.httpClient.get(url, {
-      params,
+      params: httpParams,
       observe: 'response',
       responseType: 'blob',
     });

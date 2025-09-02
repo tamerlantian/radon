@@ -24,7 +24,7 @@ export default [
     loadComponent: () => import('./admin-layout/admin-layout.component'),
     children: [
       {
-        path: '',
+        path: 'viaje',
         loadChildren: () => import('../modules/viaje/viaje.routes'),
       },
     ],

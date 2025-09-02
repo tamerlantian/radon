@@ -1,4 +1,4 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AlertaService } from '@app/common/services/alerta.service';
 import { Observable, of } from 'rxjs';
@@ -22,8 +22,7 @@ export class GeneralRepository {
    * @returns Observable con la respuesta tipada
    */
   get<T>(endpoint: string, queryParams: QueryParams = {}): Observable<T> {
-    const params = this.buildHttpParams(queryParams);
-    return this.getWithSubdominio<T>(endpoint, params);
+    return this.getWithSubdominio<T>(endpoint, queryParams);
   }
 
   /**
@@ -84,14 +83,13 @@ export class GeneralRepository {
    * @param queryParams Parámetros de consulta opcionales
    */
   public descargarArchivos(endpoint: string, queryParams: QueryParams = {}): void {
-    const params = this.buildHttpParams(queryParams);
     // this.alertaService.mensajaEspera('espera');
     this.subdominioService
       .getSubdominioUrl()
       .pipe(
         switchMap(subdominioUrl => {
           const url = `${subdominioUrl}/${endpoint}`;
-          return this.httpBase.getArchivo(url, params);
+          return this.httpBase.getArchivo(url, queryParams);
         }),
         catchError(() => {
           this.alertaService.cerrar();
@@ -118,26 +116,9 @@ export class GeneralRepository {
     return this.postWithSubdominio<T>(endpoint, data);
   }
 
-  /**
-   * Construye los parámetros HTTP a partir de los parámetros de consulta
-   * @param queryParams Parámetros de consulta
-   * @returns HttpParams
-   */
-  private buildHttpParams(queryParams: QueryParams): HttpParams {
-    let params = new HttpParams();
-
-    Object.keys(queryParams).forEach(key => {
-      if (queryParams[key] !== null && queryParams[key] !== undefined) {
-        params = params.append(key, queryParams[key].toString());
-      }
-    });
-
-    return params;
-  }
-
   // Métodos privados que utilizan el subdominio
 
-  private getWithSubdominio<T>(endpoint: string, params?: HttpParams): Observable<T> {
+  private getWithSubdominio<T>(endpoint: string, params?: QueryParams): Observable<T> {
     return this.subdominioService.getSubdominioUrl().pipe(
       switchMap(subdominioUrl => {
         const url = `${subdominioUrl}/${endpoint}`;
