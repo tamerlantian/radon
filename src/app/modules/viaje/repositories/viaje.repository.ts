@@ -32,4 +32,8 @@ export class ViajeRepository {
   eliminarViaje(id: number) {
     return this._httpBase.delete(`vertical/viaje/${id}/`);
   }
+
+  cancelarViaje(id: number) {
+    return this._httpBase.post(`vertical/viaje/cancelar/`, { id });
+  }
 }

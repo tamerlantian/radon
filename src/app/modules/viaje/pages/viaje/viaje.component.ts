@@ -43,4 +43,11 @@ export default class ViajeComponent implements OnInit {
       this._alertaService.mostrarExito('Viaje eliminado');
     });
   }
+
+  cancelarViaje(viajeId: number): void {
+    this._viajeRepository.cancelarViaje(viajeId).subscribe(() => {
+      this.getVisitas();
+      this._alertaService.mostrarExito('Viaje cancelado');
+    });
+  }
 }

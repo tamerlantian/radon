@@ -16,6 +16,7 @@ export class ViajeCardComponent {
   @Input() viaje!: Viaje;
   @Output() propuestaAceptada = new EventEmitter<number>();
   @Output() eliminarViaje = new EventEmitter<number>();
+  @Output() cancelarViaje = new EventEmitter<number>();
 
   aceptarPropuesta(propuestaId: number): void {
     this.propuestaAceptada.emit(propuestaId);
@@ -23,5 +24,9 @@ export class ViajeCardComponent {
 
   eliminar(viajeId: number): void {
     this.eliminarViaje.emit(viajeId);
+  }
+
+  cancelar(viajeId: number): void {
+    this.cancelarViaje.emit(viajeId);
   }
 }
