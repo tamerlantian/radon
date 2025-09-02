@@ -63,7 +63,7 @@
         <span class="text-[10px] text-gray-500 uppercase tracking-tight">Peso</span>
       </div>
       <div class="text-center">
-        <span class="block text-xs font-bold text-gray-800">{{ viaje.datos.volumen }}m³</span>
+        <span class="block text-xs font-bold text-gray-800">{{ viaje.datos.volumen }}kg</span>
         <span class="text-[10px] text-gray-500 uppercase tracking-tight">Volumen</span>
       </div>
       <div class="text-center">
@@ -103,6 +103,8 @@
               >
                 Aceptar
               </button>
+            } @else {
+              <ui-estado-badge [color]="'green'" [etiqueta]="'Aceptado'"></ui-estado-badge>
             }
           </div>
         }
