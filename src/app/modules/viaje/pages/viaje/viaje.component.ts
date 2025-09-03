@@ -5,6 +5,8 @@ import { Viaje } from '../../interfaces/viaje.interface';
 import { CommonModule } from '@angular/common';
 import { AlertaService } from '@app/common/services/alerta.service';
 import { ViajeCardComponent } from '../../components/viaje-card/viaje-card.component';
+import { switchMap } from 'rxjs';
+import { NegocioRepository } from '@app/common/repositories/transporte/negocio.repository';
 
 @Component({
   selector: 'app-viaje-lista',
@@ -16,6 +18,7 @@ import { ViajeCardComponent } from '../../components/viaje-card/viaje-card.compo
 })
 export default class ViajeComponent implements OnInit {
   private _viajeRepository = inject(ViajeRepository);
+  private _negocioRepository = inject(NegocioRepository);
   private _alertaService = inject(AlertaService);
 
   public viajes = signal<Viaje[]>([]);
@@ -33,10 +36,20 @@ export default class ViajeComponent implements OnInit {
   }
 
   aceptarPropuesta(propuestaId: number): void {
-    this._viajeRepository.aceptarPropuesta(propuestaId).subscribe(() => {
-      this.getVisitas();
-      this._alertaService.mostrarExito('Propuesta aceptada');
-    });
+    this._viajeRepository
+      .aceptarPropuesta(propuestaId)
+      .pipe(
+        switchMap(response => {
+          return this._negocioRepository.nuevoViaje(
+            response.propuesta.viaje,
+            response.propuesta.schema_name
+          );
+        })
+      )
+      .subscribe(() => {
+        this.getVisitas();
+        this._alertaService.mostrarExito('Viaje aprobado');
+      });
   }
 
   eliminarViaje(viajeId: number): void {
