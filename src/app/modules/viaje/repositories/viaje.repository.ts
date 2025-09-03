@@ -14,7 +14,7 @@ export class ViajeRepository {
   }
 
   guardarViaje(viaje: any) {
-    return this._httpBase.post<any>('vertical/viaje/', viaje);
+    return this._httpBase.post<any>('vertical/viaje/nuevo/', viaje);
   }
 
   getViajeById(id: number) {
