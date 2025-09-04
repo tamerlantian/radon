@@ -1,24 +1,20 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpBaseRepository } from '@app/core/repository/http-base.repository';
-import { environment } from '@environments/environment';
+import { UrlService } from '@app/core/services/url.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NegocioRepository {
   private _httpBase = inject(HttpBaseRepository);
-  private _apiSubdomain = environment.apiSubdomain;
-  private _isProduction = environment.production;
-  private _apiDev = environment.apiDev;
+  private _urlService = inject(UrlService);
 
   constructor() {}
 
   nuevoViaje(id: number, schemaName: string) {
-    const url = this._isProduction
-      ? this._apiSubdomain.replace('subdomain', schemaName)
-      : this._apiDev;
+    const url = this._urlService.buildSubdomainUrl(schemaName);
     return this._httpBase.post<{ estado_aprobado: true }>(
-      url + '/transporte/negocio/nuevo-viaje/',
+      `${url}/transporte/negocio/nuevo-viaje/`,
       {
         viaje_id: id,
       }
